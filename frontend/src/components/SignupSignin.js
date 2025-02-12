@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function SignupSignin() {
   const [showSignin, setShowSignin] = useState(true);
@@ -10,6 +11,7 @@ function SignupSignin() {
   const [last_name, setLastName] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+ const navigate = useNavigate();
   
   
 
@@ -67,7 +69,7 @@ function SignupSignin() {
         if (isLoggedIn){
           // navigate('/forum');
         }
-        // navigate('/home'); // Uncomment if using react-router
+        //navigate('/home'); // Uncomment if using react-router
       }
     }catch (error) {
       if (error.response && error.response.status === 400) {
@@ -126,6 +128,7 @@ function SignupSignin() {
               <input
                 type="text"
                 id="first_name"
+                required
                 name="first_name"
                 value={first_name}
                 placeholder='first name'
@@ -137,6 +140,7 @@ function SignupSignin() {
               <input
                 type="text"
                 id="last_name"
+                required
                 name="last_name"
                 value={last_name}
                 placeholder='last name'
@@ -148,6 +152,7 @@ function SignupSignin() {
               <input
                 type="text"
                 id="username"
+                required
                 name="username"
                 value={username}
                 placeholder='username'
@@ -159,6 +164,7 @@ function SignupSignin() {
               <input
                 type="password"
                 id="password"
+                required
                 name="password"
                 placeholder='Password'
                 className="text_input"
