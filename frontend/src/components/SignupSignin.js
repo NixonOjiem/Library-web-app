@@ -68,6 +68,7 @@ function SignupSignin() {
         // Redirect to another page if needed
         if (isLoggedIn){
           // navigate('/forum');
+          navigate('/home');
         }
         //navigate('/home'); // Uncomment if using react-router
       }
