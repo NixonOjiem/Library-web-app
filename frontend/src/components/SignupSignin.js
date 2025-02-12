@@ -3,12 +3,17 @@ import { useState } from 'react';
 
 function SignupSignin() {
   const [showSignin, setShowSignin] = useState(true);
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [first_name, setFirstName] = useState('');
+  const [last_name, setLastName] = useState('');
+  
 
   //To show Signup form
   const handleSignUp = () => {
     setShowSignin(false);
   }
-  
+
   //To show Signin form
   const handleSignin = () => {
     setShowSignin(true);
@@ -25,8 +30,9 @@ function SignupSignin() {
                 type="text"
                 id="username"
                 name="username"
-                defaultValue="username"
+                value={username}
                 className="text_input"
+                placeholder='username'
               />
             </div>
             <div className="text_area">
@@ -34,15 +40,15 @@ function SignupSignin() {
                 type="password"
                 id="password"
                 name="password"
-                defaultValue="password"
+                value={password}
                 className="text_input"
+                placeholder='password'
               />
           </div>
           <input
             type="submit"
             value="LOGIN"
             className="btn"
-
           />
         </form>
         <p className="link" href="/signup" onClick={handleSignUp}>Sign Up</p>
@@ -56,9 +62,30 @@ function SignupSignin() {
             <div className="text_area">
               <input
                 type="text"
+                id="first_name"
+                name="first_name"
+                value={first_name}
+                placeholder='first name'
+                className="text_input"
+              />
+            </div>
+            <div className="text_area">
+              <input
+                type="text"
+                id="last_name"
+                name="last_name"
+                value={last_name}
+                placeholder='last name'
+                className="text_input"
+              />
+            </div>
+            <div className="text_area">
+              <input
+                type="text"
                 id="username"
                 name="username"
-                defaultValue="username"
+                value={username}
+                placeholder='username'
                 className="text_input"
               />
             </div>
@@ -73,12 +100,12 @@ function SignupSignin() {
           </div>
           <input
             type="submit"
-            value="LOGIN"
+            value="Sign Up"
             className="btn"
 
           />
         </form>
-        <p className="link" href="/signup" onClick={handleSignin}>Sign Up</p>
+        <p className="link" href="/signup" onClick={handleSignin}>Sign in</p>
       </div>
         </div>
       )}
