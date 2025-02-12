@@ -1,38 +1,87 @@
-.App {
+body{
+  background: linear-gradient(135deg, #1B8AF1, #B58DED);
+  height: 100vh;
+  width: 100%;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Editing the signing and signup page */
+h4{
+  font-family: 'Segoe UI', bold;
+  font-size: 35px;
+  margin-top: 4rem;
+  margin-bottom: 2rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+form{
+  display: inline-block;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  height: 270px;
+  width: 350px;
+  margin-bottom: 170px;
+}
+.text_area{
+  align-content: center;
+  border-radius: 22px;
+  margin-bottom: 35px;
+  width: 100%;
+  height: 64px;
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2), 0 0 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.App-link {
-  color: #61dafb;
+.text_input{
+  margin-top: 1.2rem;
+  font-family: 'Montserrat regular';
+  font-size: 20px;
+  border: 1px solid transparent;
+  outline: none;
+  width: 80%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.text_input:focus{
+  border: 1px solid transparent;
+  outline: none;
 }
+
+.btn{
+  margin-top: 28px;
+  width: 165px;
+  height: 60px;
+  border-radius: 30px;
+  background: #B58DED;
+  border: none;
+  font-family: 'Montserrat';
+  font-size: 20px;
+  color: #FFFFFF;
+  box-shadow: 0 4px 8px 0 rgba(181, 141, 237, 0.7), 0 6px 20px 0 rgba(181, 141, 237, 0.9);
+  cursor: pointer;
+}
+
+.login{
+  display: inline-block;
+  background: #FFFFFF;
+  width: 434px;
+  height: auto;
+  margin-top: 1%;
+  border-radius: 22px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.link{
+  color: #0E4579;
+  font-family: 'Montserrat light';
+  font-size: 18px;
+  cursor: pointer;
+  display: block;
+  text-decoration: none;
+}
+.signup{
+  display: inline-block;
+  background: #FFFFFF;
+  width: 434px;
+  height: auto;
+  margin-top: 1%;
+  border-radius: 22px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+/* End of Editing the signing and signup page */
