@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+import axios from 'axios';
 
 function SignupSignin() {
   const [showSignin, setShowSignin] = useState(true);
@@ -7,6 +8,9 @@ function SignupSignin() {
   const [password, setPassword] = useState('');
   const [first_name, setFirstName] = useState('');
   const [last_name, setLastName] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  
   
 
   //To show Signup form
@@ -19,12 +23,69 @@ function SignupSignin() {
     setShowSignin(true);
   }
 
+  //handle user signup
+  const handleRegistration = async (e) => {
+    e.preventDefault();
+    console.log("registration button has been clicked")
+
+    try{
+      const response = await axios.post('http://localhost:5000/signup', {first_name, last_name, username, password})
+      alert(response.data);
+      setSuccessMessage('Registration successful!');
+    }
+    catch(error){
+      if (error.response && error.response.status === 400) {
+        alert('username already exists');
+        setErrorMessage('Username already exists');
+      } else {
+        alert('Error signing up');
+        setErrorMessage('Error signing up');
+      }
+    }
+
+  }
+
+  //handle user login
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    console.log("login button has been clicked")
+
+    try {
+      const response = await axios.post('http://localhost:5000/login', { username, password });
+      
+      // Assuming the response contains a success message and user data
+      if (response.data.userId) {
+        setSuccessMessage('Login successful!'); // Set success message
+        //console.log('Login successful:', response.data); 
+        // alert('Login successful! Welcome, ' + response.data.username); // Alert the user
+        // Store user data in localStorage or context
+        localStorage.setItem('userId', response.data.userId);
+        localStorage.setItem('username_local', response.data.username);
+        // console.log('User ID:', response.data.userId);
+        const isLoggedIn = true;
+        // Redirect to another page if needed
+        if (isLoggedIn){
+          // navigate('/forum');
+        }
+        // navigate('/home'); // Uncomment if using react-router
+      }
+    }catch (error) {
+      if (error.response && error.response.status === 400) {
+        alert('Invalid username or password');
+        setErrorMessage('Invalid username or password');
+      } else {
+        alert('Error logging in');
+        setErrorMessage('Error logging in');
+  }
+}
+  }
+
   return (
     <div>
       {showSignin ? (
         <div className="login">
           <h4>Login</h4>
-          <form>
+          <form onSubmit={handleLogin}>
             <div className="text_area">
               <input
                 type="text"
@@ -33,6 +94,7 @@ function SignupSignin() {
                 value={username}
                 className="text_input"
                 placeholder='username'
+                onChange={(e) => setUsername(e.target.value)}
               />
             </div>
             <div className="text_area">
@@ -43,6 +105,7 @@ function SignupSignin() {
                 value={password}
                 className="text_input"
                 placeholder='password'
+                onChange={(e) => setPassword(e.target.value)}
               />
           </div>
           <input
@@ -58,7 +121,7 @@ function SignupSignin() {
         <div>
           <div className="signup">
           <h4>signup</h4>
-          <form>
+          <form onSubmit={handleRegistration}>
             <div className="text_area">
               <input
                 type="text"
@@ -67,6 +130,7 @@ function SignupSignin() {
                 value={first_name}
                 placeholder='first name'
                 className="text_input"
+                onChange={(e) => setFirstName(e.target.value)}
               />
             </div>
             <div className="text_area">
@@ -77,6 +141,7 @@ function SignupSignin() {
                 value={last_name}
                 placeholder='last name'
                 className="text_input"
+                onChange={(e) => setLastName(e.target.value)}
               />
             </div>
             <div className="text_area">
@@ -87,6 +152,7 @@ function SignupSignin() {
                 value={username}
                 placeholder='username'
                 className="text_input"
+                onChange={(e) => setUsername(e.target.value)}
               />
             </div>
             <div className="text_area">
@@ -94,15 +160,15 @@ function SignupSignin() {
                 type="password"
                 id="password"
                 name="password"
-                defaultValue="password"
+                placeholder='Password'
                 className="text_input"
+                onChange={(e) => setPassword(e.target.value)}
               />
           </div>
           <input
             type="submit"
             value="Sign Up"
             className="btn"
-
           />
         </form>
         <p className="link" href="/signup" onClick={handleSignin}>Sign in</p>
