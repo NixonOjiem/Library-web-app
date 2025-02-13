@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faBook, faUser, faUsersLine, faBookOpenReader, faRightFromBracket, faPlusMinus } from '@fortawesome/free-solid-svg-icons';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 function SideBar() {
   const [userRole, setUserRole] = useState('');
@@ -30,34 +30,46 @@ function SideBar() {
   return (
     <div className='sidebar-container'>
       <h3>Community Book Store</h3>
-      <div className='sidebar-item'>
-        <FontAwesomeIcon icon={faHome} className='sidebar-icon' />
-        <span> Home</span>
-      </div>
-      <div className='sidebar-item'>
-        <FontAwesomeIcon icon={faBook} className='sidebar-icon' />
-        <span> Popular</span>
-      </div>
-      <div className='sidebar-item'>
-        <FontAwesomeIcon icon={faUser} className='sidebar-icon' />
-        <span> Profile</span>
-      </div>
+      <Link to="/home"className='sidebar-text'>
+        <div className='sidebar-item'>
+          <FontAwesomeIcon icon={faHome} className='sidebar-icon' />
+          <span className="sidebar-text"> Home</span>
+        </div>
+      </Link>
+      <Link to="/popular" className='sidebar-text'>
+        <div className='sidebar-item'>
+          <FontAwesomeIcon icon={faBook} className='sidebar-icon' />
+          <span className="sidebar-text"> Popular</span>
+        </div>
+      </Link>
+      <Link to="/profile" className='sidebar-text'>
+        <div className='sidebar-item'>
+          <FontAwesomeIcon icon={faUser} className='sidebar-icon' />
+          <span className="sidebar-text"> Profile</span>
+        </div>
+      </Link>
       <br />
       {userRole === 'librarian' && (
         <div className='Admin-content' id='admin-content'>
-          <h3>Admin</h3>
-          <div className='sidebar-item'>
-            <FontAwesomeIcon icon={faUsersLine} className='sidebar-icon' />
-            <span> Users</span>
-          </div>
-          <div className='sidebar-item'>
-            <FontAwesomeIcon icon={faBookOpenReader} className='sidebar-icon' />
-            <span> Borrowed Books</span>
-          </div>
-          <div className='sidebar-itemP'>
-            <FontAwesomeIcon icon={faPlusMinus} className='sidebar-icon' />
-            <span> Add/Remove Books</span>
-          </div>
+          <h4>Admin</h4>
+          <Link to="/users" className='sidebar-text'>
+            <div className='sidebar-item'>
+              <FontAwesomeIcon icon={faUsersLine} className='sidebar-icon' />
+              <span className="sidebar-text"> Users</span>
+            </div>
+          </Link>
+          <Link to="/borrowed-books" className='sidebar-text'>
+            <div className='sidebar-item'>
+              <FontAwesomeIcon icon={faBookOpenReader} className='sidebar-icon' />
+              <span className="sidebar-text"> Borrowed Books</span>
+            </div>
+          </Link>
+          <Link to="/add-remove-books" className='sidebar-text'>
+            <div className='sidebar-item'>
+              <FontAwesomeIcon icon={faPlusMinus} className='sidebar-icon' />
+              <span className="sidebar-text"> Add/Remove Books</span>
+            </div>
+          </Link>
         </div>
       )}
       <div className='sidebar-item' onClick={handleLogout}>

@@ -10,6 +10,11 @@ function App() {
       <Router>
         <Routes>
           <Route path="/home" element={<Home />} />
+          <Route path="/popular" element={<Home />} />
+          <Route path="/profile" element={<Home />} />
+          <Route path="/users" element={<Home />} />
+          <Route path="/borrowed-books" element={<Home />} />
+          <Route path="/add-remove-books" element={<Home />} />
           <Route path="/" element={<SignupSignin />} />
         </Routes>
       </Router>

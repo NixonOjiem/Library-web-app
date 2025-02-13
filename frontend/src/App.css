@@ -112,7 +112,9 @@ form{
   font-family: 'Montserrat';
   margin-top: 20px;
   margin-left: 20px;
+  color: #FFFFFF;
   cursor: pointer;
+  text-decoration: none;
 }
 .sidebar-itemP{
   font-family: 'Montserrat';
@@ -121,9 +123,18 @@ form{
   cursor: pointer;
 }
 
+.sidebar-text{
+  text-decoration: none;
+}
+
 .sidebar-container h3{
   font-family: 'Montserrat', bold;
   font-size: 20px;
+}
+
+.sidebar-container h4{
+  font-family: 'Montserrat', bold;
+  font-size: 17px;
 }
 
 .sidebar-icon{
@@ -144,6 +155,7 @@ form{
   height: 40vh;
   margin-top: 10px;
   border-radius: 20px;
+  overflow: hidden;
 }
 
 .banner-image {
