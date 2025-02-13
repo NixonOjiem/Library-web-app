@@ -114,6 +114,12 @@ form{
   margin-left: 20px;
   cursor: pointer;
 }
+.sidebar-itemP{
+  font-family: 'Montserrat';
+  margin-top: 20px;
+  margin-left: 20px;
+  cursor: pointer;
+}
 
 .sidebar-container h3{
   font-family: 'Montserrat', bold;

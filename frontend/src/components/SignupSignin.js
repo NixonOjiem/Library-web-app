@@ -63,7 +63,8 @@ function SignupSignin() {
         // Store user data in localStorage or context
         localStorage.setItem('userId', response.data.userId);
         localStorage.setItem('username_local', response.data.username);
-        // console.log('User ID:', response.data.userId);
+        // console.log('User ID from login page:', response.data.userId);
+        // console.log(localStorage.getItem('userId'));
         const isLoggedIn = true;
         // Redirect to another page if needed
         if (isLoggedIn){

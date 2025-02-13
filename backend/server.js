@@ -66,6 +66,18 @@ app.post('/login', (req, res) => {
   });
 });
 
+// End Point for fetching user role
+app.get('/user/:id', (req, res) => {
+  const id = req.params.id;
+  const query = 'SELECT role FROM users WHERE id = ?';
+  db.query(query, [id], (err, results) => {
+    if (err) {
+      return res.status(500).send('Error fetching user role');
+    }
+    res.json(results[0]);
+  });
+});
+
 app.get('/', (req, res) => {
   res.send('Hello from the server!');
 });
