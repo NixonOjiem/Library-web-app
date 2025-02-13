@@ -30,7 +30,7 @@ function DynamicComponent() {
   };
 
   return (
-    <div className='dynamic-content'>
+    <div className='dynamic-container'>
       {renderContent()}
     </div>
   );

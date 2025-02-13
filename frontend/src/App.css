@@ -88,11 +88,13 @@ form{
 
 /* Editing the home page */
 .home-container{
-  height: 100vh;
+  height: auto;
   width: 100%;
   background-color: #FFFFFF;
   margin: 0px;
-  position: fixed;
+  padding: 0px;
+  border: 0px;
+  
 }
 /* End of Editing the home page */
 
@@ -153,7 +155,6 @@ form{
   margin-left: 17.5%;
   width: 80%;
   height: 40vh;
-  margin-top: 10px;
   border-radius: 20px;
   overflow: hidden;
 }
@@ -165,3 +166,14 @@ form{
   object-fit: cover; /* Ensures the image covers the container without distortion */
 }
 /* End of editing the banner content */
+
+/* Editing the dynamic content */
+.dynamic-container{
+  margin-left: 17.5%;
+  width: 80%;
+  height: auto;
+  margin-top: 10px;
+  min-height: 100vh;
+  position: relative;
+}
+/*End of editing the dynamic content*/
