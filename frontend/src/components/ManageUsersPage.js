@@ -7,6 +7,7 @@ function ManageUsersPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedUser, setSelectedUser] = useState(null);
   const [editMode, setEditMode] = useState(false);
+  const password = 'password';
 
     useEffect(() => {
       axios.get('http://localhost:5000/users')
@@ -56,7 +57,15 @@ function ManageUsersPage() {
       });
   };
 
-  const resetPassword = () => {};
+  const resetPassword = () => {
+    axios.put(`http://localhost:5000/reset-password/${selectedUser.id}`, { password })
+      .then(response => {
+        alert('Password reset successfully! Passwpord is: password');
+      })
+      .catch(error => {
+        setError('Error resetting password');
+      });
+  };
 
   const handleBack = () => {
     setEditMode(false);

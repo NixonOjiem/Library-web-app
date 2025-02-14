@@ -100,9 +100,21 @@ app.put('/user-update/:id', (req, res) => {
     }
     res.send('User updated successfully');
   });
-
 });
 
+// End Point for resetting password
+app.put('/reset-password/:id', (req, res) => {
+  const id = req.params.id;
+  const { password } = req.body;
+  const query = 'UPDATE users SET password = ? WHERE id = ?';
+  db.query(query, [password, id], (err, results) => {
+    if (err) {
+      return res.status(500).send('Error resetting password');
+    }
+    res.send('Password reset successfully');
+  });
+
+});
 app.get('/', (req, res) => {
   res.send('Hello from the server!');
 });
