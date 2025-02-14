@@ -232,3 +232,54 @@ tr:hover {
   background-color: #ddd;
 }
 /*end of editing manage users page*/
+
+/* Editing mage users page for editing individual data */
+
+.admin-image{
+  width: 50%;
+  height: 100%;
+  float: left;
+}
+
+.admin-image img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.Admin-form{
+  width: 50%;
+  float: right;
+  height: 100%;
+}
+
+.user-details-form{
+  text-align: left;
+  align-items: left;
+  height: 270px;
+  width: 350px;
+  margin-bottom: 170px;
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-input{
+  border: 1px solid #000;
+  outline: none;
+}
+
+.user-details-form label p{
+  margin-bottom: 0px;
+}
+
+.admin-btn{
+  background: linear-gradient(135deg, #1B8AF1, #B58DED);
+  border: none;
+  height: 40px;
+  width: 100px;
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+  color: #FFFFFF;
+}
+/* end of Editing mage users page for editing individual data */

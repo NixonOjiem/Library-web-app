@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
+import admin_image from '../assets/images/adminimage.jpg'
 function ManageUsersPage() {
   const [users, setUsers] = useState([]);
   const [error, setError] = useState('');
@@ -62,52 +62,64 @@ function ManageUsersPage() {
       {error && <p>{error}</p>}
       
       {editMode ? (
-        <div>
-          <h3>Edit User</h3>
-          <form>
+        <div className=''>
+
+          <div className='admin-image'>
+            <img src={admin_image} alt='admin_vector_image' />
+          </div>
+
+          <div className='Admin-form'>
+          <form className='user-details-form'>
+            <h3>Edit User</h3>
             <label>
-              Username:
+              <p>Username:</p>
               <input 
                 type="text" 
                 name="username" 
                 value={selectedUser.username} 
                 onChange={handleInputChange} 
+                className='admin-input'
               />
             </label>
             <br />
             <label>
-              First Name:
+              <p>First Name:</p>
               <input 
                 type="text" 
                 name="first_name" 
                 value={selectedUser.first_name} 
                 onChange={handleInputChange} 
+                className='admin-input'
               />
             </label>
             <br />
             <label>
-              Last Name:
+              <p>Last Name:</p>
               <input 
                 type="text" 
                 name="last_name" 
                 value={selectedUser.last_name} 
                 onChange={handleInputChange} 
+                className='admin-input'
               />
             </label>
             <br />
             <label>
-              Role:
+              <p>User Role:</p>
               <input 
                 type="text" 
                 name="role" 
                 value={selectedUser.role} 
                 onChange={handleInputChange} 
+                className='admin-input'
               />
             </label>
             <br />
-            <button type="button" onClick={handleDisableUser}>Disable User</button>
-            <button type="button" onClick={handleSave}>Save</button>
+            <button type="button" onClick={handleDisableUser} className='admin-btn'>Disable User</button>
+            <button type="button" onClick={handleSave} className='admin-btn'>Save</button>
           </form>
+          </div>
+          
         </div>
       ) : (
         <div>
