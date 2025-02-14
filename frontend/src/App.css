@@ -177,3 +177,40 @@ form{
   position: relative;
 }
 /*End of editing the dynamic content*/
+
+/* Editing manage users page */
+.manage-users-container{
+
+}
+.users-list li{
+  list-style-type: none;
+  margin-top: 10px;
+  padding: 10px;
+}
+.manage-users-container hr{
+  border: 0;
+  height: 2px;
+  background-color: black;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th, td {
+  border: 0px solid #ddd;
+  padding: 8px;
+}
+th {
+  background-color: #f2f2f2;
+  text-align: left;
+}
+tr{
+  text-align: left;
+}
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+tr:hover {
+  background-color: #ddd;
+}
+/*end of editing manage users page*/

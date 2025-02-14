@@ -78,6 +78,17 @@ app.get('/user/:id', (req, res) => {
   });
 });
 
+// End Point for fetching all users
+app.get('/users', (req, res) => {
+  const query = 'SELECT id, first_name, last_name, username, role FROM users';
+  db.query(query, (err, results) => {
+    if (err) {
+      return res.status(500).send('Error fetching users');
+    }
+    res.json(results);
+  });
+});
+
 app.get('/', (req, res) => {
   res.send('Hello from the server!');
 });

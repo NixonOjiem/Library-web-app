@@ -25,7 +25,8 @@ CREATE TABLE books (
     isbn VARCHAR(20) UNIQUE NOT NULL,
     published_date DATE,
     genre VARCHAR(100),
-    copies_available INT DEFAULT 1
+    copies_available INT DEFAULT 1,
+    cover_image BLOB
 );
 
 --create borrowed_books table
@@ -40,6 +41,7 @@ CREATE TABLE borrowed_books (
     FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (book_id) REFERENCES books(id)
 );
+
 --This command creates a view named user_borrow_limits. 
 --A view is a virtual table based on the result set of a SQL query.
 CREATE VIEW user_borrow_limits AS
@@ -68,5 +70,6 @@ BEGIN
 END$$
 
 DELIMITER ;
+
 
 
