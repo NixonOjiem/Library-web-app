@@ -89,6 +89,20 @@ app.get('/users', (req, res) => {
   });
 });
 
+// End Point for updating user
+app.put('/user-update/:id', (req, res) => {
+  const id = req.params.id;
+  const { first_name, last_name, username, role } = req.body;
+  const query = 'UPDATE users SET first_name = ?, last_name = ?, username = ?, role = ? WHERE id = ?';
+  db.query(query, [first_name, last_name, username, role, id], (err, results) => {
+    if (err) {
+      return res.status(500).send('Error updating user');
+    }
+    res.send('User updated successfully');
+  });
+
+});
+
 app.get('/', (req, res) => {
   res.send('Hello from the server!');
 });

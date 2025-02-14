@@ -18,7 +18,8 @@ CREATE TABLE Users (
 );
 
 --Modify table user to add default user role as 'user'
-ALTER TABLE Users MODIFY COLUMN role ENUM('librarian', 'user') NOT NULL DEFAULT 'user';
+ALTER TABLE Users MODIFY COLUMN role ENUM('librarian', 'normal', 'user', 'disabled') NOT NULL DEFAULT 'normal';
+UPDATE users SET role = 'normal' WHERE role = 'user';
 
 --Create Books Table
 CREATE TABLE books (
