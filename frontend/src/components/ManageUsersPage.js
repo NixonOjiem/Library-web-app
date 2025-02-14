@@ -56,6 +56,13 @@ function ManageUsersPage() {
       });
   };
 
+  const resetPassword = () => {};
+
+  const handleBack = () => {
+    setEditMode(false);
+    setSelectedUser(null);
+  }
+  
   return (
     <div className='manage-users-page'>
       <h2>Manage Users</h2>
@@ -115,8 +122,14 @@ function ManageUsersPage() {
               />
             </label>
             <br />
+
+            <div className='admin-btns'>
             <button type="button" onClick={handleDisableUser} className='admin-btn'>Disable User</button>
-            <button type="button" onClick={handleSave} className='admin-btn'>Save</button>
+            <button type="button" onClick={handleSave} className='admin-btn1'>Save</button>
+            <button type="button" onClick={() => resetPassword()} className='admin-btn2'>Reset Password</button>
+
+            </div>
+            <h5 onClick={handleBack}>Back</h5>
           </form>
           </div>
           

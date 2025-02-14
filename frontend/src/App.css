@@ -264,16 +264,24 @@ tr:hover {
 }
 
 .admin-input{
-  border: 1px solid #000;
+  border: none;
   outline: none;
+  font-size: 15px;
+  border-bottom: 1px solid #000;
+  margin-top: 10px;
 }
 
 .user-details-form label p{
   margin-bottom: 0px;
+  font-size: 18px;
 }
-
+.admin-btns{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
 .admin-btn{
-  background: linear-gradient(135deg, #1B8AF1, #B58DED);
+  background: #900101;
   border: none;
   height: 40px;
   width: 100px;
@@ -281,5 +289,31 @@ tr:hover {
   padding: 10px;
   text-align: center;
   color: #FFFFFF;
+}
+
+.admin-btn1{
+  background: green;
+  border: none;
+  height: 40px;
+  width: 100px;
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+  color: #FFFFFF;
+}
+
+.admin-btn2{
+  background: blue;
+  border: none;
+  height: 40px;
+  width: 100px;
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+  color: #FFFFFF;
+}
+
+h5{
+  cursor: pointer;
 }
 /* end of Editing mage users page for editing individual data */
