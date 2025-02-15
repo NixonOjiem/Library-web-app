@@ -2,6 +2,8 @@ import React, {useState} from 'react'
 
 function RemoveBooksPage() {
   const [showAddBooks, setShowAddBooks] = useState(true);
+  const [books, setBooks] = useState([{ title: '', author: '', isbn: '', published_date: '', genre: '', copies_available: 1 }]);
+  
 
   const handleRemoveBooksPage = () => {
     setShowAddBooks(false);
@@ -9,6 +11,27 @@ function RemoveBooksPage() {
   const handleAddBooksPage = () => {
     setShowAddBooks(true);
   }
+
+  const handleAddRow = () => {
+    setBooks([...books, { title: '', author: '', isbn: '', published_date: '', genre: '', copies_available: 1 }]);
+  };
+
+  const handleRemoveRow = (index) => {
+    const newBooks = books.filter((_, i) => i !== index);
+    setBooks(newBooks);
+  };
+
+  const handleChange = (index, event) => {
+    const { name, value } = event.target;
+    const newBooks = books.map((book, i) => (i === index ? { ...book, [name]: value } : book));
+    setBooks(newBooks);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // Handle form submission logic here
+    console.log('Books:', books);
+  };
 
   return (
     <div>
