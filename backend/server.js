@@ -2,10 +2,12 @@ const express = require('express');
 const app = express();
 const mysql = require('mysql2');
 const cors = require('cors');
+const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
 app.use(cors());
+app.use(bodyParser.json());
 
 //creating a database connection
 const db = mysql.createConnection({
@@ -116,7 +118,24 @@ app.put('/reset-password/:id', (req, res) => {
 });
 
 //end Point to add books
-app.post('/add-books', (req, res) => {});
+app.post('/add-books', (req, res) => {
+  const books = req.body;
+
+  // Insert each book into the database
+  books.forEach((book) => {
+    const { title, author, isbn, published_date, genre, copies_available, cover_image } = book;
+    const sql = 'INSERT INTO books (title, author, isbn, published_date, genre, copies_available, cover_image) VALUES (?, ?, ?, ?, ?, ?, ?)';
+    db.query(sql, [title, author, isbn, published_date, genre, copies_available, cover_image], (err, result) => {
+      if (err) {
+        console.error('Error inserting book:', err);
+        return res.status(500).send('Error adding books');
+      }
+    });
+  });
+
+  console.log('Received books:', books);
+  res.status(200).send('Books added successfully');
+});
 
 app.get('/', (req, res) => {
   res.send('Hello from the server!');
