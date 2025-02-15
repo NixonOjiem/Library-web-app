@@ -325,4 +325,19 @@ h5{
   align-items: flex-start;
 }
 
+.book-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.book-row input {
+  margin-right: 10px;
+}
+
+.add-book-form button[type="button"],
+.add-book-form button[type="submit"] {
+  margin-top: 10px;
+}
 /*End of editing the add books page*/
