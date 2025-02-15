@@ -113,8 +113,11 @@ app.put('/reset-password/:id', (req, res) => {
     }
     res.send('Password reset successfully');
   });
-
 });
+
+//end Point to add books
+app.post('/add-books', (req, res) => {});
+
 app.get('/', (req, res) => {
   res.send('Hello from the server!');
 });

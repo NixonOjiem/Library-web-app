@@ -29,7 +29,15 @@ function RemoveBooksPage() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Handle form submission logic here
+    try{
+      axios.post('http://localhost:5000/add-books', books)
+
+      alert('Books added successfully');
+    }
+    catch(error){
+      alert('Error adding books');
+    }
+    
     console.log('Books:', books);
   };
 
@@ -39,7 +47,56 @@ function RemoveBooksPage() {
       {showAddBooks ? (
         <div className='bookmanagement'>
           <h1>Add a book page</h1>
-          <form>
+          <form onSubmit={handleSubmit}>
+            {books.map((book, index) => (
+              <div key={index} className="book-row">
+                <input
+                  type="text"
+                  name="title"
+                  placeholder="Title"
+                  value={book.title}
+                  onChange={(e) => handleChange(index, e)}
+                />
+                <input
+                  type="text"
+                  name="author"
+                  placeholder="Author"
+                  value={book.author}
+                  onChange={(e) => handleChange(index, e)}
+                />
+                <input
+                  type="text"
+                  name="isbn"
+                  placeholder="ISBN"
+                  value={book.isbn}
+                  onChange={(e) => handleChange(index, e)}
+                />
+                <input
+                  type="date"
+                  name="published_date"
+                  placeholder="Published Date"
+                  value={book.published_date}
+                  onChange={(e) => handleChange(index, e)}
+                />
+                <input
+                  type="text"
+                  name="genre"
+                  placeholder="Genre"
+                  value={book.genre}
+                  onChange={(e) => handleChange(index, e)}
+                />
+                <input
+                  type="number"
+                  name="copies_available"
+                  placeholder="Copies Available"
+                  value={book.copies_available}
+                  onChange={(e) => handleChange(index, e)}
+                />
+                <button type="button" onClick={() => handleRemoveRow(index)}>Delete</button>
+              </div>
+            ))}
+            <button type="button" onClick={handleAddRow}>Add Book</button>
+            <button type="submit">Submit</button>
           </form>
           <p>To remove books click here: 
             <a className='remove-books-link' onClick={handleRemoveBooksPage}>
