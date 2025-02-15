@@ -13,7 +13,7 @@ h4{
   margin-bottom: 2rem;
 }
 
-form{
+.login-form .signup-form{
   display: inline-block;
   align-items: center;
   height: 270px;
@@ -319,5 +319,10 @@ h5{
 /* end of Editing mage users page for editing individual data */
 
 /*Started editing the add books page*/
+.add-book-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
 
 /*End of editing the add books page*/

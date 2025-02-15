@@ -48,7 +48,7 @@ function RemoveBooksPage() {
       {showAddBooks ? (
         <div className='bookmanagement'>
           <h1>Add a book page</h1>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className='add-book-form'>
             {books.map((book, index) => (
               <div key={index} className="book-row">
                 <input

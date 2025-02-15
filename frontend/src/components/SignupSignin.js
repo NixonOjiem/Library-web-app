@@ -89,7 +89,7 @@ function SignupSignin() {
       {showSignin ? (
         <div className="login">
           <h4>Login</h4>
-          <form onSubmit={handleLogin}>
+          <form onSubmit={handleLogin}className='login-form'>
             <div className="text_area">
               <input
                 type="text"
@@ -125,7 +125,7 @@ function SignupSignin() {
         <div>
           <div className="signup">
           <h4>signup</h4>
-          <form onSubmit={handleRegistration}>
+          <form onSubmit={handleRegistration} className='signup-form'>
             <div className="text_area">
               <input
                 type="text"
