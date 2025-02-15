@@ -56,6 +56,7 @@ function RemoveBooksPage() {
                   name="title"
                   placeholder="Title"
                   value={book.title}
+                  className='add-book-input'
                   onChange={(e) => handleChange(index, e)}
                 />
                 <input
@@ -63,6 +64,7 @@ function RemoveBooksPage() {
                   name="author"
                   placeholder="Author"
                   value={book.author}
+                  className='add-book-input'
                   onChange={(e) => handleChange(index, e)}
                 />
                 <input
@@ -70,6 +72,7 @@ function RemoveBooksPage() {
                   name="isbn"
                   placeholder="ISBN"
                   value={book.isbn}
+                  className='add-book-input'
                   onChange={(e) => handleChange(index, e)}
                 />
                 <input
@@ -77,6 +80,7 @@ function RemoveBooksPage() {
                   name="published_date"
                   placeholder="Published Date"
                   value={book.published_date}
+                  className='add-book-input'
                   onChange={(e) => handleChange(index, e)}
                 />
                 <input
@@ -84,6 +88,7 @@ function RemoveBooksPage() {
                   name="genre"
                   placeholder="Genre"
                   value={book.genre}
+                  className='add-book-input'
                   onChange={(e) => handleChange(index, e)}
                 />
                 <input
@@ -91,6 +96,7 @@ function RemoveBooksPage() {
                   name="copies_available"
                   placeholder="Copies Available"
                   value={book.copies_available}
+                  className='add-book-input'
                   onChange={(e) => handleChange(index, e)}
                 />
                 <button type="button" onClick={() => handleRemoveRow(index)}>Delete</button>
