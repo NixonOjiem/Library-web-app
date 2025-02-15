@@ -339,5 +339,17 @@ h5{
 .add-book-form button[type="button"],
 .add-book-form button[type="submit"] {
   margin-top: 10px;
+  border: none;
+  background-color: #1B8AF1;
+  color: white;
+  width: 95px;
+  height: 40px;
+}
+.add-book-form button[type="submit"]:hover, .add-book-form button[type="button"]:hover{
+  background-color: white;
+  color: #1B8AF1;
+  transition: ease-in-out;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in-out;
 }
 /*End of editing the add books page*/
