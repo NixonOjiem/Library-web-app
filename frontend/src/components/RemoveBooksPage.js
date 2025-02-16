@@ -99,6 +99,15 @@ function RemoveBooksPage() {
                   className='add-book-input'
                   onChange={(e) => handleChange(index, e)}
                 />
+                <input 
+                 type="file"
+                 accept="image/*"
+                 capture="camera"
+                 className="add-book-input"
+                 value={book.cover_image}
+                 onChange={(e) => handleChange(index, e)}
+                />
+                
                 <button type="button" onClick={() => handleRemoveRow(index)}>Delete</button>
               </div>
             ))}
