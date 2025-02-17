@@ -6,6 +6,8 @@ import UserProfilePage from './UserProfilePage';
 import ManageUsersPage from './ManageUsersPage';
 import BrorrowedBooksPage from './BrorrowedBooksPage';
 import RemoveBooksPage from './RemoveBooksPage';
+import DeleteBooks from './DeleteBooks';
+
 
 function DynamicComponent() {
   const location = useLocation();
@@ -15,15 +17,17 @@ function DynamicComponent() {
       case '/home':
         return <HomePage />;
       case '/popular':
-        return <PopularPage />
+        return <PopularPage />;
       case '/profile':
-        return <UserProfilePage />
+        return <UserProfilePage />;
       case '/users':
-        return <ManageUsersPage />
+        return <ManageUsersPage />;
       case '/borrowed-books':
-        return <BrorrowedBooksPage />
+        return <BrorrowedBooksPage />;
       case '/add-remove-books':
-        return <RemoveBooksPage />
+        return <RemoveBooksPage />;
+      case '/delete-books':
+        return <DeleteBooks />
       default:
         return <div>Welcome to the Community Book Store!</div>;
     }
