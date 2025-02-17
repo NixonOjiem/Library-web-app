@@ -147,6 +147,21 @@ app.get('/books', (req, res) => {
   })
 })
 
+// Endpoint to get a specific book
+app.get('/edit-books/:id', (req, res) => {
+  const id = req.params.id;
+  const query = 'SELECT * FROM books WHERE id = ?';
+  db.query(query, [id], (err, results) => {
+    if (err) {
+      return res.status(500).send('Error fetching book');
+    }
+    if (results.length === 0) {
+      return res.status(404).send('Book not found');
+    }
+    res.json(results[0]); // Send the first result as the book object
+  });
+});
+
 // End Point for getting all books
 app.get('/', (req, res) => {
   res.send('Hello from the server!');
