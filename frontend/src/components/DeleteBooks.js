@@ -65,9 +65,10 @@ function DeleteBooks({ bookID, onBack }) {
                     <input type='file' onChange={handleImageChange} value={book.cover_image}/>
                 </label>
 
+                <button type='submit'>Submit</button>
             </form>
           </div>
-          
+
           <button onClick={onBack}>Back</button>
         </div>
       ) : (

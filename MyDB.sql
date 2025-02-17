@@ -29,7 +29,7 @@ CREATE TABLE books (
     isbn VARCHAR(20) UNIQUE NOT NULL,
     published_date DATE,
     genre VARCHAR(100),
-    copies_available INT DEFAULT 1,
+    copies_available INT DEFAULT 0,
     cover_image BLOB
 );
 
