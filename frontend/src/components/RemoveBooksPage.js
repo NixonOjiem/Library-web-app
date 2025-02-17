@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 
 function RemoveBooksPage() {
@@ -42,8 +42,16 @@ function RemoveBooksPage() {
     console.log('Books:', books);
   };
 
+  useEffect(() => {
+    axios.get('http://localhost:5000/books')
+      .then(response => {
+        setBooks(response.data);
+      })
+      .catch(error => {
+        alert('Error retrieving data');
+      });
+    }, []);       
 
-  
 
   return (
     <div>
