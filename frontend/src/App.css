@@ -372,3 +372,10 @@ h5{
 }
 
 /*End of editing the add books page*/
+
+/* Editing of Delet or edit books page */
+.book-details-form{
+  display: flex;
+  flex-direction: column;
+}
+/* End of Editing of Delet or edit books page */
