@@ -361,4 +361,9 @@ h5{
   margin-top: 10px;
   width: 150px;
 }
+
+.remove-books-link{
+  cursor: pointer;
+  
+}
 /*End of editing the add books page*/

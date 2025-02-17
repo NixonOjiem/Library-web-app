@@ -132,7 +132,6 @@ app.post('/add-books', (req, res) => {
       }
     });
   });
-
   console.log('Received books:', books);
   res.status(200).send('Books added successfully');
 });

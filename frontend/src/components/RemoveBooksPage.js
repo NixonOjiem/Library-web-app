@@ -42,6 +42,9 @@ function RemoveBooksPage() {
     console.log('Books:', books);
   };
 
+
+  
+
   return (
     <div>
       <h1>Book Management</h1>
@@ -114,17 +117,33 @@ function RemoveBooksPage() {
             <button type="button" onClick={handleAddRow}>Add Book</button>
             <button type="submit">Submit</button>
           </form>
-          <p>To remove books click here: 
+          <p>To delete books click here: 
             <a className='remove-books-link' onClick={handleRemoveBooksPage}>
-             RemoveBooks
+             Delete Books
             </a>
           </p>
         </div>
       ):(
         <div className='bookmanagement'>
-          <h1>Remove a book page</h1>
-          <form>
-          </form>
+          <h1>Delete books</h1>
+          <table className='book-table'>
+            <thead>
+              <tr>
+                <th>Book Title</th>
+                <th>Author</th>
+                <th>ISBN</th>
+                <th>Published Date</th>
+                <th>Genre</th>
+                <th>Copies Available</th>
+              </tr>
+            </thead>
+            <tbody>
+              {books.map((book, index) => () => (
+                <tr key={index}>book.title </tr>
+                
+                ))}
+            </tbody>
+          </table>
           <p>To add books click here:
             <a className='add-books-link' onClick={handleAddBooksPage}>
               AddBooks
