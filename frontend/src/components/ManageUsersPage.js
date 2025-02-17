@@ -90,10 +90,10 @@ function ManageUsersPage() {
             <label>
               <p>Username:</p>
               <input 
-                type="text" 
-                name="username" 
-                value={selectedUser.username} 
-                onChange={handleInputChange} 
+                type="text"
+                name="username"
+                value={selectedUser.username}
+                onChange={handleInputChange}
                 className='admin-input'
               />
             </label>
@@ -102,9 +102,9 @@ function ManageUsersPage() {
               <p>First Name:</p>
               <input 
                 type="text" 
-                name="first_name" 
-                value={selectedUser.first_name} 
-                onChange={handleInputChange} 
+                name="first_name"
+                value={selectedUser.first_name}
+                onChange={handleInputChange}
                 className='admin-input'
               />
             </label>

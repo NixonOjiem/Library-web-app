@@ -162,6 +162,43 @@ app.get('/edit-books/:id', (req, res) => {
   });
 });
 
+//Endpoint for editing a book's details
+// PUT endpoint to update a book
+app.put('/edit-book-api/:id', (req, res) => {
+  const id = req.params.id;
+  const updatedBook = req.body;
+
+  const query = `
+    UPDATE books
+    SET title = ?, author = ?, cover_image = ?, published_date = ?, genre = ?, isbn = ?, copies_available = ?
+    WHERE id = ?
+  `;
+
+  const values = [
+    updatedBook.title,
+    updatedBook.author,
+    updatedBook.cover_image,
+    updatedBook.published_date,
+    updatedBook.genre,
+    updatedBook.isbn,
+    updatedBook.copies_available,
+    id
+  ];
+
+  db.query(query, values, (err, results) => {
+    if (err) {
+      console.error('Error updating the book:', err);
+      res.status(500).json({ message: 'Error updating the book' });
+      return;
+    }
+    if (results.affectedRows === 0) {
+      res.status(404).json({ message: 'Book not found' });
+    } else {
+      res.status(200).json({ message: 'Book updated successfully' });
+    }
+  });
+});
+
 // End Point for getting all books
 app.get('/', (req, res) => {
   res.send('Hello from the server!');
