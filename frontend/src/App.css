@@ -364,6 +364,9 @@ h5{
 
 .remove-books-link{
   cursor: pointer;
-  
+
+}
+.add-books-link{
+  cursor: pointer;
 }
 /*End of editing the add books page*/

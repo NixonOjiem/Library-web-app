@@ -67,6 +67,9 @@ function RemoveBooksPage() {
     );
   });
 
+  const handleBookClicked=()=>{
+    console.log("book clicked")
+  }
   return (
     <div>
       <h1>Book Management</h1>
@@ -165,13 +168,14 @@ function RemoveBooksPage() {
             </thead>
             <tbody>
               {filteredBooks.map(book => (
-                <tr key={book.id}>
+                <tr key={book.id} onClick={handleBookClicked}>
                   <td>{book.title}</td>
                   <td>{book.author}</td>
                   <td>{book.isbn}</td>
                   <td>{book.published_date}</td>
                   <td>{book.genre}</td>
                   <td>{book.copies_available}</td>
+                  <button>Delete</button>
                 </tr>
               ))}
             </tbody>
