@@ -136,6 +136,18 @@ app.post('/add-books', (req, res) => {
   res.status(200).send('Books added successfully');
 });
 
+//End point to display all the books in the system
+app.get('/books', (req, res) => {
+  const query = 'SELECT * FROM books';
+  db.query(query, (err, results) => {
+    if (err) {
+      return res.status(500).send('Error fetching books');
+    }
+    res.json(results);
+  })
+})
+
+// End Point for getting all books
 app.get('/', (req, res) => {
   res.send('Hello from the server!');
 });
