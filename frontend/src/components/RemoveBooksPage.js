@@ -9,6 +9,7 @@ function RemoveBooksPage() {
   const [fetchedBooks, setFetchedBooks] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [currentView, setCurrentView] = useState('addBooks'); // New state variable
+  const [selectedBookID, setSelectedBookID] = useState(null); // State to store selected book ID
   const navigate = useNavigate();
 
   const handleRemoveBooksPage = () => {
@@ -71,14 +72,16 @@ function RemoveBooksPage() {
     );
   });
 
-  const handleBookClicked = () => {
+  const handleBookClicked = (bookID) => {
+    setSelectedBookID(bookID); // Set the selected book ID
     setCurrentView('deleteBooks'); // Update state to show DeleteBooks component
-    console.log("book clicked");
+    console.log("book clicked", bookID);
   };
 
-  const handleDeleteBook = () => {
+  const handleDeleteBook = (bookID) => {
+    setSelectedBookID(bookID); // Set the selected book ID
     setCurrentView('deleteBooks'); // Update state to show DeleteBooks component
-    console.log("book clicked");
+    console.log("book clicked", bookID);
   };
 
   const handleBack = () => {
@@ -89,7 +92,7 @@ function RemoveBooksPage() {
     <div>
       <h1>Book Management</h1>
       {currentView === 'deleteBooks' ? (
-        <DeleteBooks onBack={handleBack} />
+        <DeleteBooks bookID={selectedBookID} onBack={handleBack} />
       ) : (
         <>
           {showAddBooks ? (
@@ -187,14 +190,14 @@ function RemoveBooksPage() {
                 </thead>
                 <tbody>
                   {filteredBooks.map(book => (
-                    <tr key={book.id} onClick={handleBookClicked}>
+                    <tr key={book.id} onClick={() => handleBookClicked(book.id)}>
                       <td>{book.title}</td>
                       <td>{book.author}</td>
                       <td>{book.isbn}</td>
                       <td>{book.published_date}</td>
                       <td>{book.genre}</td>
                       <td>{book.copies_available}</td>
-                      <button type="button" className='delete-book-button' onClick={handleDeleteBook}>Delete</button>
+                      <button type="button" className='delete-book-button' onClick={() => handleDeleteBook(book.id)}>Delete</button>
                     </tr>
                   ))}
                 </tbody>
