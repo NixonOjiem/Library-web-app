@@ -81,11 +81,15 @@ function RemoveBooksPage() {
     console.log("book clicked");
   };
 
+  const handleBack = () => {
+    setCurrentView('addBooks'); // Update state to show AddBooks component
+  };
+
   return (
     <div>
       <h1>Book Management</h1>
       {currentView === 'deleteBooks' ? (
-        <DeleteBooks />
+        <DeleteBooks onBack={handleBack} />
       ) : (
         <>
           {showAddBooks ? (

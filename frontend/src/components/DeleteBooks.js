@@ -1,11 +1,12 @@
-import React from 'react'
+import React from 'react';
 
-function DeleteBooks() {
+function DeleteBooks({ onBack }) {
   return (
     <div>
-        <h1> Delete Books </h1>
+      <h1>Delete Books</h1>
+      <button onClick={onBack}>Back</button>
     </div>
-  )
+  );
 }
 
-export default DeleteBooks
+export default DeleteBooks;

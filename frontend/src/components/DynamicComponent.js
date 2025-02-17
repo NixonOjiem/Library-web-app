@@ -25,9 +25,7 @@ function DynamicComponent() {
       case '/borrowed-books':
         return <BrorrowedBooksPage />;
       case '/add-remove-books':
-        return <RemoveBooksPage />;
-      case '/delete-books':
-        return <DeleteBooks />
+        return <RemoveBooksPage />
       default:
         return <div>Welcome to the Community Book Store!</div>;
     }
