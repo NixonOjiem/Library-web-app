@@ -4,6 +4,7 @@ import axios from 'axios'
 function RemoveBooksPage() {
   const [showAddBooks, setShowAddBooks] = useState(true);
   const [books, setBooks] = useState([{ title: '', author: '', isbn: '', published_date: '', genre: '', copies_available: 1 }]);
+  const [fetchedBooks, setFetchedBooks] = useState([]);
   
 
   const handleRemoveBooksPage = () => {
@@ -45,7 +46,7 @@ function RemoveBooksPage() {
   useEffect(() => {
     axios.get('http://localhost:5000/books')
       .then(response => {
-        setBooks(response.data);
+        setFetchedBooks(response.data);
       })
       .catch(error => {
         alert('Error retrieving data');
@@ -146,10 +147,15 @@ function RemoveBooksPage() {
               </tr>
             </thead>
             <tbody>
-              {books.map((book, index) => () => (
-                <tr key={index}>book.title </tr>
-                
-                ))}
+             {fetchedBooks.map(books =>(
+              <tr key={books.id}>
+                <td>{books.title}</td>
+                <td>{books.author}</td>
+                <td>{books.isbn}</td>
+                <td>{books.published_date}</td>
+                <td>{books.genre}</td> 
+              </tr>
+             ))}
             </tbody>
           </table>
           <p>To add books click here:
