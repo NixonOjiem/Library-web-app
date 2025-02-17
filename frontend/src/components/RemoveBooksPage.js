@@ -1,18 +1,19 @@
-import React, {useState, useEffect} from 'react'
-import axios from 'axios'
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 function RemoveBooksPage() {
   const [showAddBooks, setShowAddBooks] = useState(true);
   const [books, setBooks] = useState([{ title: '', author: '', isbn: '', published_date: '', genre: '', copies_available: 1 }]);
   const [fetchedBooks, setFetchedBooks] = useState([]);
-  
+  const [searchQuery, setSearchQuery] = useState('');
 
   const handleRemoveBooksPage = () => {
     setShowAddBooks(false);
-  }
+  };
+
   const handleAddBooksPage = () => {
     setShowAddBooks(true);
-  }
+  };
 
   const handleAddRow = () => {
     setBooks([...books, { title: '', author: '', isbn: '', published_date: '', genre: '', copies_available: 1 }]);
@@ -24,22 +25,21 @@ function RemoveBooksPage() {
   };
 
   const handleChange = (index, event) => {
-    const { name, value } = event.target;
-    const newBooks = books.map((book, i) => (i === index ? { ...book, [name]: value } : book));
+    const { name, value, files } = event.target;
+    const newBooks = books.map((book, i) => 
+      i === index ? { ...book, [name]: files ? files[0] : value } : book
+    );
     setBooks(newBooks);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    try{
-      axios.post('http://localhost:5000/add-books', books)
-
+    try {
+      await axios.post('http://localhost:5000/add-books', books);
       alert('Books added successfully');
-    }
-    catch(error){
+    } catch (error) {
       alert('Error adding books');
     }
-
     console.log('Books:', books);
   };
 
@@ -51,8 +51,21 @@ function RemoveBooksPage() {
       .catch(error => {
         alert('Error retrieving data');
       });
-    }, []);       
+  }, []);
 
+  const handleSearchInputChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
+  const filteredBooks = fetchedBooks.filter(book => {
+    return (
+      book.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      book.author.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      book.isbn.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      book.published_date.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      book.genre.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  });
 
   return (
     <div>
@@ -112,14 +125,12 @@ function RemoveBooksPage() {
                   onChange={(e) => handleChange(index, e)}
                 />
                 <input 
-                 type="file"
-                 accept="image/*"
-                 capture="camera"
-                 className="add-book-input"
-                 value={book.cover_image}
-                 onChange={(e) => handleChange(index, e)}
+                  type="file"
+                  accept="image/*"
+                  capture="camera"
+                  className="add-book-input"
+                  onChange={(e) => handleChange(index, e)}
                 />
-                
                 <button type="button" onClick={() => handleRemoveRow(index)}>Delete</button>
               </div>
             ))}
@@ -132,9 +143,15 @@ function RemoveBooksPage() {
             </a>
           </p>
         </div>
-      ):(
+      ) : (
         <div className='bookmanagement'>
-          <h1>Delete books</h1>
+          <input 
+            type="text" 
+            id="searchInput" 
+            onChange={handleSearchInputChange} 
+            placeholder="Filter Table.." 
+            className='search-input' 
+          />
           <table className='book-table'>
             <thead>
               <tr>
@@ -147,26 +164,27 @@ function RemoveBooksPage() {
               </tr>
             </thead>
             <tbody>
-             {fetchedBooks.map(books =>(
-              <tr key={books.id}>
-                <td>{books.title}</td>
-                <td>{books.author}</td>
-                <td>{books.isbn}</td>
-                <td>{books.published_date}</td>
-                <td>{books.genre}</td> 
-              </tr>
-             ))}
+              {filteredBooks.map(book => (
+                <tr key={book.id}>
+                  <td>{book.title}</td>
+                  <td>{book.author}</td>
+                  <td>{book.isbn}</td>
+                  <td>{book.published_date}</td>
+                  <td>{book.genre}</td>
+                  <td>{book.copies_available}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
           <p>To add books click here:
             <a className='add-books-link' onClick={handleAddBooksPage}>
-              AddBooks
+              Add Books
             </a>
           </p>
         </div>
       )}
     </div>
-  )
+  );
 }
 
-export default RemoveBooksPage
+export default RemoveBooksPage;
