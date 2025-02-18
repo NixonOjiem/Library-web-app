@@ -47,6 +47,7 @@ function DeleteBooks({ bookID, onBack }) {
     try {
       const response = await axios.put(`http://localhost:5000/edit-book-api/${bookID}`, updatedBook);
       console.log(response.data);
+      alert('book updated')
     } catch (error) {
       console.error(error);
     }

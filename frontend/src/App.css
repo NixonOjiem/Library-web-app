@@ -441,4 +441,20 @@ textarea:focus {
 .hand-shaking{
   color: #1B8AF1;
 }
+.userpage-form-container{
+  width: 40%;
+  float: left;
+  text-align: left;
+
+}
+.password-label{
+  display: flex;
+  flex-direction: column;
+}
+.userprofile-form label{
+  margin-top: 10px;
+}
+.userprofile-form label span{
+  font-weight: bold;
+}
 /* End of editing the profile page */
