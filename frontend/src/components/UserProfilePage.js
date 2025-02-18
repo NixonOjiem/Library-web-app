@@ -31,11 +31,12 @@ function UserProfilePage() {
         password
       });
       console.log(response.data);
+      alert('User updated succcessfully')
     } catch (error) {
       console.error('Error updating user:', error);
     }
   };
-  
+
   return (
     <div>
      <p> Hey there, {username} <FontAwesomeIcon icon= {faHands} className='hand-shaking'/></p>
