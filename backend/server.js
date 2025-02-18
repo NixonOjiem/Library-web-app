@@ -1,5 +1,7 @@
 const express = require('express');
 const app = express();
+const multer = require('multer');
+const upload = multer({ limits: { fileSize: 100 * 1024 * 1024 } }); // 100MB limit
 const mysql = require('mysql2');
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -7,9 +9,10 @@ const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
 app.use(cors());
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: '100mb' }));
+app.use(bodyParser.urlencoded({ limit: '100mb', extended: true, parameterLimit: 100000 }));
 
-//creating a database connection
+// Creating a database connection
 const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
@@ -18,7 +21,7 @@ const db = mysql.createConnection({
   port: 3307
 });
 
-//connecting to the database
+// Connecting to the database
 db.connect((err) => {
   if (err) {
     console.error('Error connecting to the database:', err);
@@ -51,24 +54,23 @@ app.post('/signup', (req, res) => {
   });
 });
 
-//Signin Endpoint
+// Signin Endpoint
 app.post('/login', (req, res) => {
   const { username, password } = req.body;
   const query = 'SELECT * FROM users WHERE username = ? AND password = ?';
   db.query(query, [username, password], (err, results) => {
-      if (err) {
-          return res.status(500).send('Error signing in');
-      }
-      if (results.length === 0) {
-          return res.status(400).send('Invalid username or password');
-      }
-      // Send the response once
-     return res.json({ userId: results[0].id, username: results[0].username });
-     //return res.status(200).send('Login is successful');
+    if (err) {
+      return res.status(500).send('Error signing in');
+    }
+    if (results.length === 0) {
+      return res.status(400).send('Invalid username or password');
+    }
+    // Send the response once
+    return res.json({ userId: results[0].id, username: results[0].username });
   });
 });
 
-// End Point for fetching user role
+// Endpoint for fetching user role
 app.get('/user/:id', (req, res) => {
   const id = req.params.id;
   const query = 'SELECT role FROM users WHERE id = ?';
@@ -80,7 +82,7 @@ app.get('/user/:id', (req, res) => {
   });
 });
 
-// End Point for fetching all users
+// Endpoint for fetching all users
 app.get('/users', (req, res) => {
   const query = 'SELECT id, first_name, last_name, username, role FROM users';
   db.query(query, (err, results) => {
@@ -91,7 +93,7 @@ app.get('/users', (req, res) => {
   });
 });
 
-// End Point for updating user
+// Endpoint for updating user
 app.put('/user-update/:id', (req, res) => {
   const id = req.params.id;
   const { first_name, last_name, username, role } = req.body;
@@ -104,7 +106,7 @@ app.put('/user-update/:id', (req, res) => {
   });
 });
 
-// End Point for resetting password
+// Endpoint for resetting password
 app.put('/reset-password/:id', (req, res) => {
   const id = req.params.id;
   const { password } = req.body;
@@ -117,7 +119,7 @@ app.put('/reset-password/:id', (req, res) => {
   });
 });
 
-//end Point to add books
+// Endpoint to add books
 app.post('/add-books', (req, res) => {
   const books = req.body;
 
@@ -136,7 +138,7 @@ app.post('/add-books', (req, res) => {
   res.status(200).send('Books added successfully');
 });
 
-//End point to display all the books in the system
+// Endpoint to display all the books in the system
 app.get('/books', (req, res) => {
   const query = 'SELECT * FROM books';
   db.query(query, (err, results) => {
@@ -144,8 +146,8 @@ app.get('/books', (req, res) => {
       return res.status(500).send('Error fetching books');
     }
     res.json(results);
-  })
-})
+  });
+});
 
 // Endpoint to get a specific book
 app.get('/edit-books/:id', (req, res) => {
@@ -162,8 +164,7 @@ app.get('/edit-books/:id', (req, res) => {
   });
 });
 
-//Endpoint for editing a book's details
-// PUT endpoint to update a book
+// Endpoint for editing a book's details
 app.put('/edit-book-api/:id', (req, res) => {
   const id = req.params.id;
   const updatedBook = req.body;
@@ -199,11 +200,17 @@ app.put('/edit-book-api/:id', (req, res) => {
   });
 });
 
-// End Point for getting all books
+app.use((req, res, next) => {
+  console.log(`Request size: ${req.headers['content-length']} bytes`);
+  next();
+});
+
+// Endpoint for getting all books
 app.get('/', (req, res) => {
   res.send('Hello from the server!');
 });
 
+// Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
