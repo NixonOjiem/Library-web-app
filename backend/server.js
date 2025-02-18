@@ -206,7 +206,24 @@ app.use((req, res, next) => {
 });
 
 //End point for users to update their
+app.put('/update-user-api/:id', (req, res) => {
+  const userId = parseInt(req.params.id);
+  const { username, password } = req.body;
 
+  const query = 'UPDATE users SET username = ?, password = ? WHERE id = ?';
+  db.query(query, [username, password, userId], (err, result) => {
+    if (err) {
+      console.error('Error updating user:', err);
+      res.status(500).json({ message: 'Error updating user' });
+      return;
+    }
+    if (result.affectedRows === 0) {
+      res.status(404).json({ message: 'User not found' });
+    } else {
+      res.status(200).json({ message: 'User updated successfully' });
+    }
+  });
+});
 
 // Endpoint for getting all books
 app.get('/', (req, res) => {
