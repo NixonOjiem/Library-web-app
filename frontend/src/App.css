@@ -457,4 +457,19 @@ textarea:focus {
 .userprofile-form label span{
   font-weight: bold;
 }
+.submit-button{
+  width: 70px;
+  height: 30px;
+  background-color: #1B8AF1;
+  color: #fff;
+  border: none;
+  margin: 10px;
+}
+.submit-button:hover{
+  background-color: white;
+  color: #1B8AF1;
+  transition: ease-in-out;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in-out;
+}
 /* End of editing the profile page */

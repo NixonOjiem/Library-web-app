@@ -16,12 +16,17 @@ function UserProfilePage() {
 
   console.log(username);
 
+  const handleUserChangeDetails=(event)=>{
+    event.preventDefault();
+    console.log("User details changed");
+  }
+
   return (
     <div>
      <p> Hey there, {username} <FontAwesomeIcon icon= {faHands} className='hand-shaking'/></p>
       <div className='userpage-form-container'>
         <p>Edit your current details</p>
-        <form className='userprofile-form'>
+        <form className='userprofile-form' onSubmit={handleUserChangeDetails}>
 
           <label>
             <span>Username:</span>
@@ -32,7 +37,7 @@ function UserProfilePage() {
             <span>Password:</span>
             <input type="password" value= {password} onChange={(e)=>setPassword(e.target.value) }/>
           </label>
-
+          <button type='submit' className='submit-button'>Submit</button>
         </form>
       </div>
     </div>
