@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHands } from '@fortawesome/free-solid-svg-icons';
 
 function UserProfilePage() {
   const [username, setUsername] = useState('');
@@ -14,7 +16,7 @@ function UserProfilePage() {
 
   return (
     <div>
-      Hey there, {username}
+      Hey there, {username} <FontAwesomeIcon icon= {faHands} className='hand-shaking'/>
     </div>
   );
 }
