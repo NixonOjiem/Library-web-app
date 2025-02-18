@@ -126,10 +126,11 @@ function DeleteBooks({ bookID, onBack }) {
               </label>
 
               <button type='submit' >Submit</button>
+              <button onClick={onBack} className='back-button'>Back</button>
             </form>
           </div>
 
-          <button onClick={onBack} className='back-button'>Back</button>
+          
         </div>
       ) : (
         <p>Loading...</p>

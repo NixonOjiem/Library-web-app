@@ -417,10 +417,22 @@ textarea:focus {
   height: 40px;
   background-color: #1B8AF1;
   color: #fff;
+  border: none;
+  margin: 10px;
 }
-.book-details-form button:hover{}
+.book-details-form button:hover, .back-button:hover {
+  background-color: white;
+  color: #1B8AF1;
+  transition: ease-in-out;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in-out;
+}
 .back-button{
   width: 100px;
   height: 40px;
+  background-color: #1B8AF1;
+  color: #fff;
+  border: none;
+  margin: 10px;
 }
 /* End of Editing of Delet or edit books page */
