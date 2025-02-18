@@ -389,5 +389,38 @@ h5{
 .book-details-form label span{
   font-size: 17px;
   margin-right: 10px;
+  font-weight: bold;
+}
+input[type="text"],
+input[type="number"],
+input[type="date"],
+textarea {
+  border: none;
+  border-bottom: 2px solid #ccc;
+  padding: 8px 0;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.5s;
+  transition: border-color 0.5s ease-in-out;
+  transition-timing-function: ease-in-out;
+}
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="date"]:focus,
+textarea:focus {
+  border-bottom: 2px solid blue;
+  transition: border-color 0.5s ease-in-out;
+}
+.book-details-form button{
+  width: 100px;
+  height: 40px;
+  background-color: #1B8AF1;
+  color: #fff;
+}
+.book-details-form button:hover{}
+.back-button{
+  width: 100px;
+  height: 40px;
 }
 /* End of Editing of Delet or edit books page */
