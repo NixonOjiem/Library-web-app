@@ -377,5 +377,17 @@ h5{
 .book-details-form{
   display: flex;
   flex-direction: column;
+  align-items: left;
+  text-align: left;
+}
+
+.book-details-form label{
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.book-details-form label span{
+  font-size: 17px;
+  margin-right: 10px;
 }
 /* End of Editing of Delet or edit books page */
