@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { encode } from 'base64-arraybuffer';
 
 function HomePage() {
   const [booksFetched, setBooksFetched] = useState([]);
@@ -32,7 +33,7 @@ function HomePage() {
               <p>Copies Available: {book.copies_available}</p>
               {book.cover_image && (
                 <img
-                  src={`data:image/jpeg;base64,${Buffer.from(book.cover_image.data).toString('base64')}`}
+                  src={`data:image/jpeg;base64,${encode(new Uint8Array(book.cover_image.data))}`}
                   alt={book.title}
                   style={{ width: '100px', height: '150px' }}
                 />
