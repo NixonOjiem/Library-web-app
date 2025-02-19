@@ -58,7 +58,7 @@ function UserProfilePage() {
         </form>
       </div>
 
-      <div>
+      <div className='borrowed-books-container'>
         <p>Books Borrowed</p>
         
       </div>

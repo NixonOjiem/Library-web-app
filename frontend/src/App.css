@@ -472,4 +472,8 @@ textarea:focus {
   transition-duration: 0.5s;
   transition-timing-function: ease-in-out;
 }
+.borrowed-books-container{
+  width: 40%;
+  float: right;
+}
 /* End of editing the profile page */
