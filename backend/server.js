@@ -145,7 +145,13 @@ app.get('/books', (req, res) => {
     if (err) {
       return res.status(500).send('Error fetching books');
     }
-    res.json(results);
+    const booksWithImages = results.map(book => {
+      return {
+        ...book,
+        cover_image: book.cover_image ? book.cover_image.toString('base64') : null
+      };
+    });
+    res.json(booksWithImages);
   });
 });
 
@@ -225,8 +231,7 @@ app.put('/update-user-api/:id', (req, res) => {
   });
 });
 
-
-//End point to fetch boooks borrowed by a specific user
+//End point to fetch books borrowed by a specific user
 app.get('/books-borrowed/:id', (req, res) => {
   const userId = parseInt(req.params.id);
   const query = `
