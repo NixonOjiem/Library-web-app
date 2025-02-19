@@ -8,6 +8,7 @@ function UserProfilePage() {
   const [userId, setUserID] = useState(0);
   const [password, setPassword] = useState('');
   const [hasBorrowedBooks, setHasBorrowedBooks] = useState(false);
+  const [ borrrowedBooks, setBorrowedBooks] = useState([])
 
   useEffect(() => {
     const storedUsername = localStorage.getItem('username_local');
@@ -25,6 +26,7 @@ function UserProfilePage() {
       try {
         const response = await axios.get(`http://localhost:5000/books-borrowed/${userId}`);
         console.log(response.data);
+        setBorrowedBooks(response.data);
 
         if (response.data.length === 0) {
           setHasBorrowedBooks(false);
@@ -77,10 +79,16 @@ function UserProfilePage() {
         {hasBorrowedBooks ? (
           <div>
             <p>Borrowed books appear here</p>
+            <ul>
+              {borrrowedBooks.map((book, index) => (
+                <li key={index}>{book.book_id}, {book.date_borrowed}</li>
+              ))}
+            </ul>
           </div>
         ) : (
           <div>
             <p>You haven't borrowed any books yet</p>
+
           </div>
         )}
       </div>
