@@ -22,7 +22,7 @@ function UserProfilePage() {
 
   useEffect(async ()=>{
     try{
-      const response = await axios.get(`http://localhost:3001/books-borrowed/${userId}`)
+      const response = await axios.get(`http://localhost:5000/books-borrowed/${userId}`)
       console.log(response.data)
     }
     catch(error){

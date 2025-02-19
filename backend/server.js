@@ -225,6 +225,22 @@ app.put('/update-user-api/:id', (req, res) => {
   });
 });
 
+
+//End point to fetch boooks borrowed by a specific user
+app.get('/books-borrowed/:id', (req, res) => {
+  const userId = parseInt(req.params.id);
+  const query = 'SELECT * FROM borrowed_books WHERE user_id =?'
+
+  db.query(query, [userId], (err, results) => {
+    if(err){
+      console.error('Error fetching books borrowed:', err);
+      res.status(500).send('Server error');
+      return;
+    }
+    res.json(results);
+  })
+})
+
 // Endpoint for getting all books
 app.get('/', (req, res) => {
   res.send('Hello from the server!');
