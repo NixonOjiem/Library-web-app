@@ -81,7 +81,7 @@ function UserProfilePage() {
             <p>Borrowed books appear here</p>
             <ul>
               {borrrowedBooks.map((book, index) => (
-                <li key={index}>{book.book_id}, {book.date_borrowed}</li>
+                <li key={index}>{book.book_id}, {book.title}, {book.date_borrowed}</li>
               ))}
             </ul>
           </div>
