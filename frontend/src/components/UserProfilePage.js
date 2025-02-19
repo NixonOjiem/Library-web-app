@@ -20,6 +20,16 @@ function UserProfilePage() {
     }
   }, []); // Empty dependency array ensures this runs only once
 
+  useEffect(async ()=>{
+    try{
+      const response = await axios.get(`http://localhost:3001/books-borrowed/${userId}`)
+      console.log(response.data)
+    }
+    catch(error){
+      console.log(error)
+    }
+  })
+
   console.log(username);
   
 
@@ -60,7 +70,7 @@ function UserProfilePage() {
 
       <div className='borrowed-books-container'>
         <p>Books Borrowed</p>
-        
+
       </div>
     </div>
   );
