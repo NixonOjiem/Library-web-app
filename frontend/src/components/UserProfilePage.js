@@ -57,6 +57,11 @@ function UserProfilePage() {
 
         </form>
       </div>
+
+      <div>
+        <p>Books Borrowed</p>
+        
+      </div>
     </div>
   );
 }
