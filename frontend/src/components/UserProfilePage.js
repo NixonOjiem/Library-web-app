@@ -5,33 +5,41 @@ import axios from 'axios';
 
 function UserProfilePage() {
   const [username, setUsername] = useState('');
-  const [userId, setUserID] = useState(0)
-  const [password, setPassword] = useState('')
+  const [userId, setUserID] = useState(0);
+  const [password, setPassword] = useState('');
+  const [hasBorrowedBooks, setHasBorrowedBooks] = useState(false);
 
   useEffect(() => {
     const storedUsername = localStorage.getItem('username_local');
     const storedUserId = localStorage.getItem('userId');
     // console.log(storedUserId)
 
-    if (storedUsername, storedUserId) {
+    if (storedUsername && storedUserId) {
       setUsername(storedUsername);
       setUserID(Number(storedUserId));
-      
     }
   }, []); // Empty dependency array ensures this runs only once
 
-  useEffect(async ()=>{
-    try{
-      const response = await axios.get(`http://localhost:5000/books-borrowed/${userId}`)
-      console.log(response.data)
-    }
-    catch(error){
-      console.log(error)
-    }
-  })
+  useEffect(() => {
+    const fetchBorrowedBooks = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5000/books-borrowed/${userId}`);
+        console.log(response.data);
+
+        if (response.data.length === 0) {
+          setHasBorrowedBooks(false);
+        } else {
+          setHasBorrowedBooks(true);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchBorrowedBooks();
+  }, [userId]);
 
   console.log(username);
-  
 
   const handleUserChangeDetails = async (event) => {
     event.preventDefault();
@@ -41,7 +49,7 @@ function UserProfilePage() {
         password
       });
       console.log(response.data);
-      alert('User updated succcessfully')
+      alert('User updated successfully');
     } catch (error) {
       console.error('Error updating user:', error);
     }
@@ -49,28 +57,32 @@ function UserProfilePage() {
 
   return (
     <div>
-     <p> Hey there, {username} <FontAwesomeIcon icon= {faHands} className='hand-shaking'/></p>
+      <p>Hey there, {username} <FontAwesomeIcon icon={faHands} className='hand-shaking' /></p>
       <div className='userpage-form-container'>
         <p>Edit your current details</p>
         <form className='userprofile-form' onSubmit={handleUserChangeDetails}>
-
           <label>
             <span>Username:</span>
             <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
           </label>
-
           <label className='password-label'>
             <span>Password:</span>
-            <input type="password" value= {password} onChange={(e)=>setPassword(e.target.value) }/>
+            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
           </label>
           <button type='submit' className='submit-button'>Submit</button>
-
         </form>
       </div>
-
       <div className='borrowed-books-container'>
         <p>Books Borrowed</p>
-
+        {hasBorrowedBooks ? (
+          <div>
+            <p>Borrowed books appear here</p>
+          </div>
+        ) : (
+          <div>
+            <p>You haven't borrowed any books yet</p>
+          </div>
+        )}
       </div>
     </div>
   );
