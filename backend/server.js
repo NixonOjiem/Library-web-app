@@ -253,11 +253,6 @@ app.get('/books-borrowed/:id', (req, res) => {
   });
 });
 
-// Endpoint for getting all books
-app.get('/', (req, res) => {
-  res.send('Hello from the server!');
-});
-
 // Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
