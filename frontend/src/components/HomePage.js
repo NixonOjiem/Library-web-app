@@ -55,13 +55,13 @@ function HomePage() {
     event.preventDefault();
     console.log('Form submitted for book:', selectedBook);
     console.log('Return Date:', selectedBook.returnDate);
-
+  
     try {
       const response = await axios.post('http://localhost:5000/book-borrow', {
         userId: userId,
         bookId: selectedBook.id,
-        borrowDate: selectedBook.borrowDate.toISOString(),
-        returnDate: selectedBook.returnDate.toISOString(),
+        borrowDate: selectedBook.borrowDate.toISOString().slice(0, 10), // Get YYYY-MM-DD
+        returnDate: selectedBook.returnDate.toISOString().slice(0, 10), // Get YYYY-MM-DD
       });
       alert("Book borrowed successfully");
       console.log('Response:', response.data);
