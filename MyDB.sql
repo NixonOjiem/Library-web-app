@@ -63,15 +63,20 @@ BEFORE INSERT ON borrowed_books
 FOR EACH ROW
 BEGIN
     DECLARE borrow_count INT;
+
+    -- Count the number of borrowed books for the user with status 'borrowed'
     SELECT COUNT(*) INTO borrow_count
     FROM borrowed_books
     WHERE user_id = NEW.user_id AND status = 'borrowed';
 
+    -- Check if the user has reached the maximum borrow limit
     IF borrow_count >= 3 THEN
         SIGNAL SQLSTATE '45000'
-        SET MESSAGE_TEXT = 'User has already borrowed the maximum number of books';
+        SET MESSAGE_TEXT = 'User  has already borrowed the maximum number of books';
     END IF;
 END$$
+
+DELIMITER ;
 
 DELIMITER ;
 
