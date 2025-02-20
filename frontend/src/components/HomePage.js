@@ -8,6 +8,7 @@ function HomePage() {
   const [selectedBook, setSelectedBook] = useState(null);
   const [borrowDate, setBorrowDate] = useState('');
   const [returnDate, setReturnDate] = useState('');
+  const [userId, setUserId] = useState(0);
 
   useEffect(() => {
     const fetchBooksStored = async () => {
@@ -25,6 +26,15 @@ function HomePage() {
   useEffect(() => {
     console.log('Books Fetched:', booksFetched);
   }, [booksFetched]);
+
+  useEffect(() => {
+    const userIdFromStorage = localStorage.getItem('userId');
+    if (userIdFromStorage) {
+      setUserId(userIdFromStorage);
+      // console.log('User ID:', userId);
+    }
+  }, []);
+  console.log('User ID:', userId);
 
   const handleBookClick = (book) => {
     setSelectedBook(book);
