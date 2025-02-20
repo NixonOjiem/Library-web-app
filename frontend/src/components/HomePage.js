@@ -6,6 +6,8 @@ function HomePage() {
   const [booksFetched, setBooksFetched] = useState([]);
   const [showBorrowForm, setShowBorrowForm] = useState(false);
   const [selectedBook, setSelectedBook] = useState(null);
+  const [borrowDate, setBorrowDate] = useState('');
+  const [returnDate, setReturnDate] = useState('');
 
   useEffect(() => {
     const fetchBooksStored = async () => {
@@ -27,6 +29,11 @@ function HomePage() {
   const handleBookClick = (book) => {
     setSelectedBook(book);
     setShowBorrowForm(true);
+    const currentDate = new Date();
+    setBorrowDate(currentDate.toLocaleDateString());
+    const returnDate = new Date(currentDate);
+    returnDate.setDate(returnDate.getDate() + 30);
+    setReturnDate(returnDate.toLocaleDateString());
   };
 
   const handleFormSubmit = (event) => {
@@ -54,7 +61,15 @@ function HomePage() {
               ISBN:
               <input type='text' name='isbn' value={selectedBook.isbn} readOnly />
             </label>
-            <button type='submit'>Submit</button>
+            <label>
+              Date Borrowed:
+              <input type='text' name='borrowDate' value={borrowDate} readOnly />
+            </label>
+            <label>
+              Return Date:
+              <input type='text' name='returnDate' value={returnDate} readOnly />
+            </label>
+            <button type='submit' className='submit-button'>Submit</button>
           </form>
         </div>
       ) : (
