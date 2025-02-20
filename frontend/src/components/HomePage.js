@@ -67,7 +67,7 @@ function HomePage() {
       console.log('Response:', response.data);
     } catch (error) {
       console.log('Error submitting form:', error);
-      alert('An error occured')
+      alert('An error occurred');
     }
   };
 
