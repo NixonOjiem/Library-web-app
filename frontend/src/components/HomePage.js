@@ -55,17 +55,19 @@ function HomePage() {
     event.preventDefault();
     console.log('Form submitted for book:', selectedBook);
     console.log('Return Date:', selectedBook.returnDate);
-  
+
     try {
       const response = await axios.post('http://localhost:5000/book-borrow', {
         userId: userId,
         bookId: selectedBook.id,
-        borrowDate: selectedBook.borrowDate,
-        returnDate: selectedBook.returnDate,
+        borrowDate: selectedBook.borrowDate.toISOString(),
+        returnDate: selectedBook.returnDate.toISOString(),
       });
+      alert("Book borrowed successfully");
       console.log('Response:', response.data);
     } catch (error) {
       console.log('Error submitting form:', error);
+      alert('An error occured')
     }
   };
 
