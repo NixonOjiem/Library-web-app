@@ -6,8 +6,7 @@ function HomePage() {
   const [booksFetched, setBooksFetched] = useState([]);
   const [showBorrowForm, setShowBorrowForm] = useState(false);
   const [selectedBook, setSelectedBook] = useState(null);
-  const [borrowDate, setBorrowDate] = useState('');
-  const [returnDate, setReturnDate] = useState('');
+  const [borrowDate, setBorrowDate] = useState(null);
   const [userId, setUserId] = useState(0);
 
   useEffect(() => {
@@ -31,25 +30,43 @@ function HomePage() {
     const userIdFromStorage = localStorage.getItem('userId');
     if (userIdFromStorage) {
       setUserId(userIdFromStorage);
-      // console.log('User ID:', userId);
     }
   }, []);
-  console.log('User ID:', userId);
+
+  useEffect(() => {
+    console.log('User ID:', userId);
+  }, [userId]);
 
   const handleBookClick = (book) => {
-    setSelectedBook(book);
-    setShowBorrowForm(true);
     const currentDate = new Date();
-    setBorrowDate(currentDate.toLocaleDateString());
     const returnDate = new Date(currentDate);
     returnDate.setDate(returnDate.getDate() + 30);
-    setReturnDate(returnDate.toLocaleDateString());
+
+    setSelectedBook({
+      ...book,
+      borrowDate: currentDate,
+      returnDate: returnDate,
+    });
+    setShowBorrowForm(true);
+    setBorrowDate(currentDate);
   };
 
-  const handleFormSubmit = (event) => {
+  const handleFormSubmit = async (event) => {
     event.preventDefault();
-    // Handle form submission logic here
     console.log('Form submitted for book:', selectedBook);
+    console.log('Return Date:', selectedBook.returnDate);
+  
+    try {
+      const response = await axios.post('http://localhost:5000/books/borrow', {
+        userId: userId,
+        bookId: selectedBook.id,
+        borrowDate: selectedBook.borrowDate,
+        returnDate: selectedBook.returnDate,
+      });
+      console.log('Response:', response.data);
+    } catch (error) {
+      console.log('Error submitting form:', error);
+    }
   };
 
   return (
@@ -73,11 +90,11 @@ function HomePage() {
             </label>
             <label>
               Date Borrowed:
-              <input type='text' name='borrowDate' value={borrowDate} readOnly />
+              <input type='text' name='borrowDate' value={selectedBook.borrowDate.toLocaleDateString()} readOnly />
             </label>
             <label>
               Return Date:
-              <input type='text' name='returnDate' value={returnDate} readOnly />
+              <input type='text' name='returnDate' value={selectedBook.returnDate.toLocaleDateString()} readOnly />
             </label>
             <button type='submit' className='submit-button'>Submit</button>
           </form>
