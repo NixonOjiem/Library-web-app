@@ -258,6 +258,18 @@ app.get('/books-borrowed/:id', (req, res) => {
   });
 });
 
+//user borrowing book end point
+app.post('/book-borrow', (req, res) => {
+  const { userId, bookId, dateBorrowed, dateExpectedReturn } = req.body;
+  const query = `INSERT INTO borrowed_books (user_id, book_id, date_borrowed, date_expected_return) VALUES (?,?,?,?)`;
+  db.query(query, [userId, bookId, dateBorrowed, dateExpectedReturn], (err, results) => {
+    if (err) {
+      return res.status(500).send('Error borrowing books');
+    }
+    res.send('Book borrowed successfully');
+  });
+}); 
+
 // Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
