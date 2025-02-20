@@ -457,7 +457,7 @@ textarea:focus {
 .userprofile-form label span{
   font-weight: bold;
 }
-.submit-button{
+.submit-button, .back-to-home-page{
   width: 70px;
   height: 30px;
   background-color: #1B8AF1;
@@ -465,7 +465,7 @@ textarea:focus {
   border: none;
   margin: 10px;
 }
-.submit-button:hover{
+.submit-button:hover, .back-to-home-page:hover{
   background-color: white;
   color: #1B8AF1;
   transition: ease-in-out;
@@ -494,4 +494,5 @@ textarea:focus {
   width: 100px;
   height: 150px;
 }
+
 /*End of editing the Home Page*/

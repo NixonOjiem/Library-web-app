@@ -51,6 +51,10 @@ function HomePage() {
     setBorrowDate(currentDate);
   };
 
+  const handleBackButton= ()=>{
+    setShowBorrowForm(false);
+  }
+
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     console.log('Form submitted for book:', selectedBook);
@@ -100,6 +104,7 @@ function HomePage() {
             </label>
             <button type='submit' className='submit-button'>Submit</button>
           </form>
+          <button className='back-to-home-page' onClick={()=>handleBackButton()}>Back</button>
         </div>
       ) : (
         <div className='display-available-books'>
