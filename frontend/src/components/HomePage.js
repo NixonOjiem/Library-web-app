@@ -44,11 +44,15 @@ function HomePage() {
           <form onSubmit={handleFormSubmit}>
             <label>
               Name:
-              <input type='text' name='name' required />
+              <input type='text' name='name' value={selectedBook.title} readOnly />
             </label>
             <label>
-              Email:
-              <input type='email' name='email' required />
+              Genre:
+              <input type='text' name='genre' value={selectedBook.genre} readOnly />
+            </label>
+            <label>
+              ISBN:
+              <input type='text' name='isbn' value={selectedBook.isbn} readOnly />
             </label>
             <button type='submit'>Submit</button>
           </form>
