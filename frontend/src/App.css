@@ -477,3 +477,21 @@ textarea:focus {
   float: right;
 }
 /* End of editing the profile page */
+
+/*Start of editing the Home Page*/
+.book-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.book-item {
+  flex: 1 0 20%;
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+.book-cover {
+  width: 100px;
+  height: 150px;
+}
+/*End of editing the Home Page*/

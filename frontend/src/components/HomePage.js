@@ -23,15 +23,16 @@ function HomePage() {
   }, [booksFetched]); // Log booksFetched whenever it updates
 
   return (
-    <div>
-      <h1>Home Page</h1>
-      <div className='display-available-books'>
-        {Array.isArray(booksFetched) && booksFetched.length > 0 ? (
-          booksFetched.map(book => {
+<div>
+    <h1>Home Page</h1>
+    <div className='display-available-books'>
+      {Array.isArray(booksFetched) && booksFetched.length > 0 ? (
+        <div className='book-container'>
+          {booksFetched.map((book, index) => {
             const base64String = encode(new Uint8Array(book.cover_image.data));
             console.log(`Base64 String for ${book.title}:`, base64String);
             return (
-              <div key={book.id}>
+              <div key={book.id} className='book-item'>
                 <h3>{book.title}</h3>
                 <p>Author: {book.author}</p>
                 <p>ISBN: {book.isbn}</p>
@@ -42,18 +43,19 @@ function HomePage() {
                   <img
                     src={`data:image/jpeg;base64,${base64String}`}
                     alt={book.title}
-                    style={{ width: '100px', height: '150px' }}
+                    className='book-cover'
                   />
                 )}
               </div>
             );
-          })
-        ) : (
-          <p>No books available.</p>
-        )}
-      </div>
+          })}
+        </div>
+      ) : (
+        <p>No books available.</p>
+      )}
     </div>
-  );
+  </div>
+);
 }
 
 export default HomePage;
