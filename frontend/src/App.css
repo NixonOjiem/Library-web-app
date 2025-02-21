@@ -513,7 +513,7 @@ textarea:focus {
   text-align: left;
 }
 
-.borowed-books-search{
+.borrowed-books-search{
   width: 30% !important;
   text-align: cernter !important;
 }
@@ -527,6 +527,23 @@ textarea:focus {
   margin: 10px;
 }
 .search-borrowed-books-button:hover{
+  background-color: white;
+  color: #1B8AF1;
+  transition: ease-in-out;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in-out;
+}
+
+.back-button-borrowed-books{
+  width: 70px;
+  height: 30px;
+  background-color: #1B8AF1;
+  color: #fff;
+  border: none;
+  margin: 10px;
+}
+
+.back-button-borrowed-books:hover{
   background-color: white;
   color: #1B8AF1;
   transition: ease-in-out;
