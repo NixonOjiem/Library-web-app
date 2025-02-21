@@ -496,3 +496,41 @@ textarea:focus {
 }
 
 /*End of editing the Home Page*/
+
+
+/*Editing of borrowed books page*/
+.all-borrowed-books-container{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.borrowed-book-item{
+  flex: 1 0 20%;
+  box-sizing: border-box;
+  padding: 10px;
+  text-align: left;
+}
+
+.borowed-books-search{
+  width: 30% !important;
+  text-align: cernter !important;
+}
+
+.search-borrowed-books-button{
+  width: 70px;
+  height: 30px;
+  background-color: #1B8AF1;
+  color: #fff;
+  border: none;
+  margin: 10px;
+}
+.search-borrowed-books-button:hover{
+  background-color: white;
+  color: #1B8AF1;
+  transition: ease-in-out;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in-out;
+}
+/*End of Editing of borrowed books page*/
