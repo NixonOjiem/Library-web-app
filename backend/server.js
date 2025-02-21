@@ -157,13 +157,26 @@ app.get('/books', (req, res) => {
 
 //End point to get all borrowed books
 app.get('/borrowed-books', (req, res) => {
-  const query = 'SELECT * FROM borrowed_books';
+  const query = `SELECT 
+    borrowed_books.id,
+    borrowed_books.user_id,
+    borrowed_books.date_borrowed,
+    borrowed_books.date_expected_return,
+    borrowed_books.date_returned,
+    borrowed_books.status,
+    books.title
+FROM 
+    borrowed_books
+JOIN 
+    books ON borrowed_books.book_id = books.id;`;
+
   db.query(query, (err, results) => {
     if (err) {
       return res.status(500).send('Error fetching borrowed books');
     }
     res.json(results);
   });
+
 });
 
 // Endpoint to get a specific book

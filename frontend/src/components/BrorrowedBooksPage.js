@@ -21,7 +21,16 @@ function BrorrowedBooksPage() {
 
   return (
     <div className='borrowed-books'>
-      BrorrowedBooksPage
+      <h1>BrorrowedBooksPage</h1>
+      <div className='books-container'>
+        {
+          borrowedBooks.map((books, index) => (
+            <div key = {index}>
+              {books.book_id}
+            </div>
+          ))
+        }
+      </div>
     </div>
   )
 }
