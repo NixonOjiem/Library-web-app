@@ -550,4 +550,23 @@ textarea:focus {
   transition-duration: 0.5s;
   transition-timing-function: ease-in-out;
 }
+
+.borrowed-book-image-holder{
+  width: 40%;
+  float: left;
+  height: auto;
+  
+}
+
+.book-borrowed-classification{
+  width: 40%;
+  float: right;
+  height: auto;
+}
+
+.my_image{
+  width: 100%;
+  height: auto;
+  
+}
 /*End of Editing of borrowed books page*/

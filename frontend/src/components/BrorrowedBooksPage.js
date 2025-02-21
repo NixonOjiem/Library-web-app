@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import image from '../assets/images/adminimage2.jpg';
 
 function BorrowedBooksPage() {
   const [borrowedBooks, setBorrowedBooks] = useState([]);
@@ -43,7 +44,12 @@ function BorrowedBooksPage() {
       {
         showBookClicked ? (
           <>
-            <div className="book">
+
+            <div className='borrowed-book-image-holder'>
+              <img src={image} alt="Admin Image" className='my_image'/>
+            </div>
+
+            <div className="book-borrowed-classification">
               <h2>Book Details</h2>
               {selectedBook && ( // Check if a book is selected
                 <>
@@ -51,10 +57,10 @@ function BorrowedBooksPage() {
                   <p>Book Name: {selectedBook.title}</p>
                   <p>Date Borrowed: {selectedBook.date_borrowed}</p>
                   <p>Expected Return Date: {selectedBook.date_expected_return}</p>
+                  <button className="back-button-borrowed-books" onClick={() => setShowBookClicked(false)}>Discard</button>
                 </>
               )}
             </div>
-            <button className="back-button-borrowed-books" onClick={() => setShowBookClicked(false)}>Close</button>
           </>
         ) : (
           <>
