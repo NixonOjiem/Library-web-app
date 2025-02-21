@@ -26,7 +26,10 @@ function BrorrowedBooksPage() {
         {
           borrowedBooks.map((books, index) => (
             <div key = {index}>
-              {books.book_id}
+              <p>User:{books.username}</p>
+              <p>Book Name:{books.title}</p>
+              <p>Date Borrowed: {books.date_borrowed}</p>
+              <p>Expected Return Date: {books.date_expected_return}</p>
             </div>
           ))
         }

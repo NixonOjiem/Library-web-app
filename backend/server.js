@@ -160,6 +160,7 @@ app.get('/borrowed-books', (req, res) => {
   const query = `SELECT 
     borrowed_books.id,
     borrowed_books.user_id,
+    users.username,
     borrowed_books.date_borrowed,
     borrowed_books.date_expected_return,
     borrowed_books.date_returned,
@@ -168,7 +169,9 @@ app.get('/borrowed-books', (req, res) => {
 FROM 
     borrowed_books
 JOIN 
-    books ON borrowed_books.book_id = books.id;`;
+    books ON borrowed_books.book_id = books.id
+JOIN 
+    users ON borrowed_books.user_id = users.id;`;
 
   db.query(query, (err, results) => {
     if (err) {
