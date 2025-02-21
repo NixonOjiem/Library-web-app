@@ -57,7 +57,15 @@ function BorrowedBooksPage() {
                   <p>Book Name: {selectedBook.title}</p>
                   <p>Date Borrowed: {selectedBook.date_borrowed}</p>
                   <p>Expected Return Date: {selectedBook.date_expected_return}</p>
+                  <p>Date returned: <input type='date' placeholder='seleect date if book has been returned...'/></p>
+                  <p>Status: <select id="status" name="status">
+                              <option value="lost">Lost</option>
+                              <option value="returned">returned</option>
+                              <option value="borrowed">borrowed</option>
+                            </select>
+                    </p>
                   <button className="back-button-borrowed-books" onClick={() => setShowBookClicked(false)}>Discard</button>
+                  <button className='submit-changes-for-books'>submit</button>
                 </>
               )}
             </div>

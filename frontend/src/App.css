@@ -534,7 +534,7 @@ textarea:focus {
   transition-timing-function: ease-in-out;
 }
 
-.back-button-borrowed-books{
+.back-button-borrowed-books, .submit-changes-for-books{
   width: 70px;
   height: 30px;
   background-color: #1B8AF1;
@@ -543,7 +543,7 @@ textarea:focus {
   margin: 10px;
 }
 
-.back-button-borrowed-books:hover{
+.back-button-borrowed-books:hover, .submit-changes-for-books:hover {
   background-color: white;
   color: #1B8AF1;
   transition: ease-in-out;
@@ -562,7 +562,10 @@ textarea:focus {
   width: 40%;
   float: right;
   height: auto;
+  text-align: left;
 }
+
+
 
 .my_image{
   width: 100%;
